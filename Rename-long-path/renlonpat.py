@@ -2,8 +2,6 @@ import os
 import sys
 
 num=0
-folders=0
-files=0
 task=[]
 
 def show_all(sSrc,folders,files):
@@ -18,13 +16,9 @@ def show_all(sSrc,folders,files):
             files+=1
     return folders,files
 
+print "Before:"
 for path in sys.argv[1:]:
-    folders,files=show_all(path,folders,files)
-
-print "=============="
-print "Total folders: %d" % folders
-print "Total files: %d" % files
-print
+    folders,files=show_all(path,0,0)
 
 task.reverse()
 for path in task:
@@ -33,6 +27,12 @@ for path in task:
     if not old.isdigit():
         new.append(str(num))
         num+=1
-        to="\\".join(new)
-        print path+" to "+to
-        os.rename(path,to)
+        os.rename(path,"\\".join(new))
+
+print "After:"
+for path in sys.argv[1:]:
+    folders,files=show_all(path,0,0)
+
+print "=============="
+print "Total folders: %d" % folders
+print "Total files: %d" % files
