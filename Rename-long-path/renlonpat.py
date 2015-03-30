@@ -16,23 +16,23 @@ def show_all(sSrc,folders,files):
             files+=1
     return folders,files
 
-print "Before:"
+print('Before:')
 for path in sys.argv[1:]:
     folders,files=show_all(path,0,0)
 
 task.reverse()
 for path in task:
-    new=path.split("\\")
+    new=path.split('\\')
     old=new.pop()
     if not old.isdigit():
         new.append(str(num))
         num+=1
-        os.rename(path,"\\".join(new))
+        os.rename(path,'\\'.join(new))
 
-print "After:"
+print('After:')
 for path in sys.argv[1:]:
     folders,files=show_all(path,0,0)
 
-print "=============="
-print "Total folders: %d" % folders
-print "Total files: %d" % files
+print('='*25)
+print('Total folders: %d' % folders)
+print('Total files: %d' % files)
